@@ -7,6 +7,9 @@ window.API = {
     },
     add_tarefa: function(tarefa){
         return post('/api/add_tarefa', {tarefa: JSON.stringify(tarefa)})
+    },
+    remove_tarefa: function(id) {
+        return post('/api/remove_tarefa', {tarefa_id: id})  
     }
 }
 

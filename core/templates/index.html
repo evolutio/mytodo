@@ -19,7 +19,7 @@
   <div id="app" class="container" style="padding: 20px;">
     <div class="field">
       <label class="label">Name</label>
-      <div class="control">
+      <div class="control" :class="{'is-loading': adding}">
         <input class="input" 
           type="text" 
           placeholder="Text input"
@@ -36,18 +36,16 @@
       el: '#app',
       data: {
         novatarefa: '',
-        tarefas: [
-          // {tarefa: 'Lavar a roupa', feita: false},
-          // {tarefa: 'Trocar a fralda do neném', feita: true},
-          // {tarefa: 'Passear com o cachorro', feita: false},
-        ]
+        tarefas: [],
+        adding: false
       },
       methods: {
         add: function(){
-          // this.tarefas.push({tarefa: this.novatarefa, feita: false})
           var self = this
+          self.adding = true
           API.add_tarefa({tarefa: this.novatarefa, feita: false}).then(function(response){
             self.tarefas.push(response.data);
+            self.adding = false
           })
         },
       },
